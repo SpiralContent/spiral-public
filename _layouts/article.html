@@ -1,0 +1,54 @@
+{% include header.html %}
+{% include nav.html %}
+<div class="container">
+  <div class="backlink">
+    <a href="{{ site.baseurl }}/knowledge">&laquo; back to knowledge &amp; resource center</a>
+  </div>
+  <div class="row">
+    <div class="col-md-8 article-wrap">
+      <div class="row" style="background-color: whitesmoke;">
+        <div class="col-md-1">
+            <ul class="share-icons hidden-xs">
+              <li><a href="https://twitter.com/intent/tweet?url={{ site.baseurl }}{{ page.url}}&text={{ page.title }}"><img src="{{ site.baseurl }}/img/i-twitter.png" /></a></li>
+              <li><a href="//facebook.com/sharer/sharer.php?u={{ site.baseurl }}{{ page.url }}" onclick="openPopup(this.href);"><img src="{{ site.baseurl }}/img/i-facebook.png" /></a></li>
+              <li><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ site.baseurl }}{{ page.url }}" onclick="openPopup(this.href);"><img src="{{ site.baseurl }}/img/i-linkedin.png" /></a></li>
+              <li><a href="https://plus.google.com/share?url={{ site.baseurl }}{{ page.url }}" onclick="openPopup(this.href)"><img src="{{ site.baseurl }}/img/i-googleplus.png" /></a></li>
+              <li><a href="http://www.pinterest.com/pin/create/button/?url={{ site.baseurl }}{{page.url}}" onclick="openPopup(this.href)"><img src="{{ site.baseurl }}/img/i-pinterest.png" /></a></li>
+              <!-- <li><a href=""><img src="{{ site.baseurl }}/img/i-email.png" /></a></li> -->
+            </ul>
+        </div>
+        <div class="col-md-10">
+          <article>{{content}}</article>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 tac">
+
+      <div class="block mb">
+        <h3 class="hd-3">Subscribe to our newsletter</h3>
+        <form action="http://www.spiral.media/sendmail_newsletter/" method="POST">
+          <div class="input-group">
+            <input type="email" required class="form-control" placeholder="email" name="newsletter_email">
+            <span class="input-group-btn"><button class="btn btn-action">go</button></span>
+          </div>
+          <input type="hidden" name="redirect_url" value="{{ site.production_url }}{{ page.url }}#thanks">
+        </form>
+      </div>
+
+      <div class="block">
+        <h3 class="hd-3">related articles</h3>
+        {% for post in site.related_posts limit:5%}
+        <a class="mb" href="{{ site.baseurl }}{{ post.url }}">
+          <div class="article article-xs tac breathe" style="background-image:url('{{ site.baseurl }}/img/articles/{{post.image}}')">
+            <h3>{{ post.title }}</h3>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- comments -->
+</div>
+
+<script src="//platform.twitter.com/widgets.js"></script>
+{% include footer.html %}
